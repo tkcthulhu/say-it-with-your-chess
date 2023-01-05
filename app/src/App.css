@@ -1,0 +1,17 @@
+.B {
+  background-color: black;
+}
+
+.W {
+  background-color: white;
+}
+
+.square {
+  height: 100px;
+  width:100px;
+}
+
+.chessboard {
+  border: 2px solid black;
+  width:fit-content
+}
