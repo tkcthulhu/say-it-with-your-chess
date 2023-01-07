@@ -15,3 +15,12 @@
   border: 2px solid black;
   width:fit-content
 }
+
+.title {
+  width: fit-content !important
+}
+
+.piece {
+  height: 100px;
+  width:100px;
+}
