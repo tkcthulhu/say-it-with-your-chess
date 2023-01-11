@@ -1,3 +1,7 @@
+import { useState } from 'react'
+
+import Button from 'react-bootstrap/Button'
+
 import white_bishop from '../img/white_bishop.png'
 import white_king from '../img/white_king.png'
 import white_knight from '../img/white_knight.png'
@@ -13,7 +17,9 @@ import black_rook from '../img/black_rook.png'
 
 function Board() {   
 
-    let board = [
+    const [board, setBoard ] = useState([])
+
+    let newBoard = [
         [4,2,3,5,6,3,2,4],
         [1,1,1,1,1,1,1,1],
         [0,0,0,0,0,0,0,0],
@@ -101,8 +107,13 @@ function Board() {
 
                 let this_square = Number(square)
                 this_row.push(
-                    <div className={`col d-flex justify-content-center ${(this_square + i) % 2 ? 'W' : 'B'} square`} onClick={() => console.log(columnLetter(this_square),i+1)} key={`${columnLetter(this_square)}${i+1}`}>
-                        {board[i][this_square] ? <img src={piece(board[i][this_square])} alt="" className='piece'/> : ''}
+                    <div 
+                        className={`col d-flex justify-content-center ${(this_square + i) % 2 ? 'W' : 'B'} square`} 
+                        onClick={() => console.log(columnLetter(this_square),i+1)} 
+                        key={`${columnLetter(this_square)}${i+1}`}
+                        id={`${columnLetter(this_square)}${i+1}`}
+                    >
+                        {board[i][this_square] ? <img src={piece(board[i][this_square])} alt="" className='piece' draggable/> : ''}
                     </div>
                 )
         }
@@ -116,9 +127,12 @@ function Board() {
     }
 
     return(
-        <div className="container chessboard">
-            {renderBoard}
-        </div>
+        <>
+            <div className="container chessboard">
+                {renderBoard}
+            </div>
+            <Button onClick={() => setBoard(newBoard)}>New Game</Button>
+        </>
     )
 
 }
